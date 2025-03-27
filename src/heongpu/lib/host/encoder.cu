@@ -177,13 +177,13 @@ namespace heongpu
             encoding_location_->data(), plain_modulus_->data(), message.size());
         HEONGPU_CUDA_CHECK(cudaGetLastError());
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_intt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::INVERSE,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .mod_inverse = n_plain_inverse_->data(),
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_intt;
+        cfg_intt.n_power = n_power;
+        cfg_intt.ntt_type = gpuntt::INVERSE;
+        cfg_intt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_intt.zero_padding = false;
+        cfg_intt.mod_inverse = n_plain_inverse_->data();
+        cfg_intt.stream = stream;
 
         gpuntt::GPU_NTT_Inplace(output_memory.data(),
                                 plain_intt_tables_->data(),
@@ -209,13 +209,13 @@ namespace heongpu
             encoding_location_->data(), plain_modulus_->data(), message.size());
         HEONGPU_CUDA_CHECK(cudaGetLastError());
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_intt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::INVERSE,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .mod_inverse = n_plain_inverse_->data(),
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_intt;
+        cfg_intt.n_power = n_power;
+        cfg_intt.ntt_type = gpuntt::INVERSE;
+        cfg_intt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_intt.zero_padding = false;
+        cfg_intt.mod_inverse = n_plain_inverse_->data();
+        cfg_intt.stream = stream;
 
         gpuntt::GPU_NTT_Inplace(output_memory.data(),
                                 plain_intt_tables_->data(),
@@ -241,13 +241,13 @@ namespace heongpu
             encoding_location_->data(), plain_modulus_->data(), message.size());
         HEONGPU_CUDA_CHECK(cudaGetLastError());
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_intt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::INVERSE,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .mod_inverse = n_plain_inverse_->data(),
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_intt;
+        cfg_intt.n_power = n_power;
+        cfg_intt.ntt_type = gpuntt::INVERSE;
+        cfg_intt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_intt.zero_padding = false;
+        cfg_intt.mod_inverse = n_plain_inverse_->data();
+        cfg_intt.stream = stream;
 
         gpuntt::GPU_NTT_Inplace(output_memory.data(),
                                 plain_intt_tables_->data(),
@@ -273,13 +273,13 @@ namespace heongpu
             encoding_location_->data(), plain_modulus_->data(), message.size());
         HEONGPU_CUDA_CHECK(cudaGetLastError());
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_intt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::INVERSE,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .mod_inverse = n_plain_inverse_->data(),
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_intt;
+        cfg_intt.n_power = n_power;
+        cfg_intt.ntt_type = gpuntt::INVERSE;
+        cfg_intt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_intt.zero_padding = false;
+        cfg_intt.mod_inverse = n_plain_inverse_->data();
+        cfg_intt.stream = stream;
 
         gpuntt::GPU_NTT_Inplace(output_memory.data(),
                                 plain_intt_tables_->data(),
@@ -296,12 +296,12 @@ namespace heongpu
         Data64* message_gpu = temp_memory.data();
         Data64* temp_plain = message_gpu + slot_count_;
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_ntt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::FORWARD,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_ntt;
+        cfg_ntt.n_power = n_power;
+        cfg_ntt.ntt_type = gpuntt::FORWARD;
+        cfg_ntt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_ntt.zero_padding = false;
+        cfg_ntt.stream = stream;
 
         gpuntt::GPU_NTT(plain.data(), temp_plain, plain_ntt_tables_->data(),
                         plain_modulus_->data(), cfg_ntt, 1, 1);
@@ -327,12 +327,12 @@ namespace heongpu
         Data64* message_gpu = temp_memory.data();
         Data64* temp_plain = message_gpu + slot_count_;
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_ntt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::FORWARD,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_ntt;
+        cfg_ntt.n_power = n_power;
+        cfg_ntt.ntt_type = gpuntt::FORWARD;
+        cfg_ntt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_ntt.zero_padding = false;
+        cfg_ntt.stream = stream;
 
         gpuntt::GPU_NTT(plain.data(), temp_plain, plain_ntt_tables_->data(),
                         plain_modulus_->data(), cfg_ntt, 1, 1);
@@ -362,12 +362,12 @@ namespace heongpu
         Data64* message_gpu = temp_memory.data();
         Data64* temp_plain = message_gpu + slot_count_;
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_ntt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::FORWARD,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_ntt;
+        cfg_ntt.n_power = n_power;
+        cfg_ntt.ntt_type = gpuntt::FORWARD;
+        cfg_ntt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_ntt.zero_padding = false;
+        cfg_ntt.stream = stream;
 
         gpuntt::GPU_NTT(plain.data(), temp_plain, plain_ntt_tables_->data(),
                         plain_modulus_->data(), cfg_ntt, 1, 1);
@@ -392,12 +392,12 @@ namespace heongpu
         Data64* message_gpu = temp_memory.data();
         Data64* temp_plain = message_gpu + slot_count_;
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_ntt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::FORWARD,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_ntt;
+        cfg_ntt.n_power = n_power;
+        cfg_ntt.ntt_type = gpuntt::FORWARD;
+        cfg_ntt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_ntt.zero_padding = false;
+        cfg_ntt.stream = stream;
 
         gpuntt::GPU_NTT(plain.data(), temp_plain, plain_ntt_tables_->data(),
                         plain_modulus_->data(), cfg_ntt, 1, 1);
@@ -439,11 +439,11 @@ namespace heongpu
 
         double fix = scale / static_cast<double>(slot_count_);
 
-        gpufft::fft_configuration<Float64> cfg_ifft = {
-            .n_power = log_slot_count_,
-            .fft_type = gpufft::type::INVERSE,
-            .mod_inverse = Complex64(fix, 0.0),
-            .stream = stream};
+        gpufft::fft_configuration<Float64> cfg_ifft;
+        cfg_ifft.n_power = log_slot_count_;
+        cfg_ifft.fft_type = gpufft::type::INVERSE;
+        cfg_ifft.mod_inverse = Complex64(fix, 0.0);
+        cfg_ifft.stream = stream;
 
         gpufft::GPU_Special_FFT(temp_complex.data(),
                                 special_ifft_roots_table_->data(), cfg_ifft, 1);
@@ -454,12 +454,12 @@ namespace heongpu
             Q_size_, two_pow_64, reverse_order->data(), n_power);
         HEONGPU_CUDA_CHECK(cudaGetLastError());
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_ntt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::FORWARD,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_ntt;
+        cfg_ntt.n_power = n_power;
+        cfg_ntt.ntt_type = gpuntt::FORWARD;
+        cfg_ntt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_ntt.zero_padding = false;
+        cfg_ntt.stream = stream;
 
         gpuntt::GPU_NTT_Inplace(output_memory.data(), ntt_table_->data(),
                                 modulus_->data(), cfg_ntt, Q_size_, Q_size_);
@@ -489,11 +489,11 @@ namespace heongpu
 
         double fix = scale / static_cast<double>(slot_count_);
 
-        gpufft::fft_configuration<Float64> cfg_ifft = {
-            .n_power = log_slot_count_,
-            .fft_type = gpufft::type::INVERSE,
-            .mod_inverse = Complex64(fix, 0.0),
-            .stream = stream};
+        gpufft::fft_configuration<Float64> cfg_ifft;
+        cfg_ifft.n_power = log_slot_count_;
+        cfg_ifft.fft_type = gpufft::type::INVERSE;
+        cfg_ifft.mod_inverse = Complex64(fix, 0.0);
+        cfg_ifft.stream = stream;
 
         gpufft::GPU_Special_FFT(temp_complex.data(),
                                 special_ifft_roots_table_->data(), cfg_ifft, 1);
@@ -504,12 +504,12 @@ namespace heongpu
             Q_size_, two_pow_64, reverse_order->data(), n_power);
         HEONGPU_CUDA_CHECK(cudaGetLastError());
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_ntt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::FORWARD,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_ntt;
+        cfg_ntt.n_power = n_power;
+        cfg_ntt.ntt_type = gpuntt::FORWARD;
+        cfg_ntt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_ntt.zero_padding = false;
+        cfg_ntt.stream = stream;
 
         gpuntt::GPU_NTT_Inplace(output_memory.data(), ntt_table_->data(),
                                 modulus_->data(), cfg_ntt, Q_size_, Q_size_);
@@ -534,11 +534,11 @@ namespace heongpu
 
         double fix = scale / static_cast<double>(slot_count_);
 
-        gpufft::fft_configuration<Float64> cfg_ifft = {
-            .n_power = log_slot_count_,
-            .fft_type = gpufft::type::INVERSE,
-            .mod_inverse = Complex64(fix, 0.0),
-            .stream = stream};
+        gpufft::fft_configuration<Float64> cfg_ifft;
+        cfg_ifft.n_power = log_slot_count_;
+        cfg_ifft.fft_type = gpufft::type::INVERSE;
+        cfg_ifft.mod_inverse = Complex64(fix, 0.0);
+        cfg_ifft.stream = stream;
 
         gpufft::GPU_Special_FFT(message_gpu.data(),
                                 special_ifft_roots_table_->data(), cfg_ifft, 1);
@@ -549,12 +549,12 @@ namespace heongpu
             two_pow_64, reverse_order->data(), n_power);
         HEONGPU_CUDA_CHECK(cudaGetLastError());
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_ntt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::FORWARD,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_ntt;
+        cfg_ntt.n_power = n_power;
+        cfg_ntt.ntt_type = gpuntt::FORWARD;
+        cfg_ntt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_ntt.zero_padding = false;
+        cfg_ntt.stream = stream;
 
         gpuntt::GPU_NTT_Inplace(output_memory.data(), ntt_table_->data(),
                                 modulus_->data(), cfg_ntt, Q_size_, Q_size_);
@@ -579,11 +579,11 @@ namespace heongpu
 
         double fix = scale / static_cast<double>(slot_count_);
 
-        gpufft::fft_configuration<Float64> cfg_ifft = {
-            .n_power = log_slot_count_,
-            .fft_type = gpufft::type::INVERSE,
-            .mod_inverse = Complex64(fix, 0.0),
-            .stream = stream};
+        gpufft::fft_configuration<Float64> cfg_ifft;
+        cfg_ifft.n_power = log_slot_count_;
+        cfg_ifft.fft_type = gpufft::type::INVERSE;
+        cfg_ifft.mod_inverse = Complex64(fix, 0.0);
+        cfg_ifft.stream = stream;
 
         gpufft::GPU_Special_FFT(message_gpu.data(),
                                 special_ifft_roots_table_->data(), cfg_ifft, 1);
@@ -594,12 +594,12 @@ namespace heongpu
             two_pow_64, reverse_order->data(), n_power);
         HEONGPU_CUDA_CHECK(cudaGetLastError());
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_ntt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::FORWARD,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_ntt;
+        cfg_ntt.n_power = n_power;
+        cfg_ntt.ntt_type = gpuntt::FORWARD;
+        cfg_ntt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_ntt.zero_padding = false;
+        cfg_ntt.stream = stream;
 
         gpuntt::GPU_NTT_Inplace(output_memory.data(), ntt_table_->data(),
                                 modulus_->data(), cfg_ntt, Q_size_, Q_size_);
@@ -655,13 +655,13 @@ namespace heongpu
 
         DeviceVector<Data64> temp_plain(n * current_modulus_count, stream);
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_intt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::INVERSE,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .mod_inverse = n_inverse_->data(),
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_intt;
+        cfg_intt.n_power = n_power;
+        cfg_intt.ntt_type = gpuntt::INVERSE;
+        cfg_intt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_intt.zero_padding = false;
+        cfg_intt.mod_inverse = n_inverse_->data();
+        cfg_intt.stream = stream;
 
         gpuntt::GPU_NTT(plain.data(), temp_plain.data(), intt_table_->data(),
                         modulus_->data(), cfg_intt, current_modulus_count,
@@ -687,10 +687,10 @@ namespace heongpu
             plain.scale_, two_pow_64, reverse_order->data(), n_power);
         HEONGPU_CUDA_CHECK(cudaGetLastError());
 
-        gpufft::fft_configuration<Float64> cfg_fft = {
-            .n_power = log_slot_count_,
-            .fft_type = gpufft::type::FORWARD,
-            .stream = stream};
+        gpufft::fft_configuration<Float64> cfg_fft;
+        cfg_fft.n_power = log_slot_count_;
+        cfg_fft.fft_type = gpufft::type::FORWARD;
+        cfg_fft.stream = stream;
 
         gpufft::GPU_Special_FFT(temp_complex.data(),
                                 special_fft_roots_table_->data(), cfg_fft, 1);
@@ -717,13 +717,13 @@ namespace heongpu
 
         DeviceVector<Data64> temp_plain(n * current_modulus_count, stream);
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_intt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::INVERSE,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .mod_inverse = n_inverse_->data(),
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_intt;
+        cfg_intt.n_power = n_power;
+        cfg_intt.ntt_type = gpuntt::INVERSE;
+        cfg_intt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_intt.zero_padding = false;
+        cfg_intt.mod_inverse = n_inverse_->data();
+        cfg_intt.stream = stream;
 
         gpuntt::GPU_NTT(plain.data(), temp_plain.data(), intt_table_->data(),
                         modulus_->data(), cfg_intt, current_modulus_count,
@@ -750,10 +750,10 @@ namespace heongpu
             plain.scale_, two_pow_64, reverse_order->data(), n_power);
         HEONGPU_CUDA_CHECK(cudaGetLastError());
 
-        gpufft::fft_configuration<Float64> cfg_fft = {
-            .n_power = log_slot_count_,
-            .fft_type = gpufft::type::FORWARD,
-            .stream = stream};
+        gpufft::fft_configuration<Float64> cfg_fft;
+        cfg_fft.n_power = log_slot_count_;
+        cfg_fft.fft_type = gpufft::type::FORWARD;
+        cfg_fft.stream = stream;
 
         gpufft::GPU_Special_FFT(temp_complex.data(),
                                 special_fft_roots_table_->data(), cfg_fft, 1);
@@ -780,13 +780,13 @@ namespace heongpu
 
         DeviceVector<Data64> temp_plain(n * current_modulus_count, stream);
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_intt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::INVERSE,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .mod_inverse = n_inverse_->data(),
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_intt;
+        cfg_intt.n_power = n_power;
+        cfg_intt.ntt_type = gpuntt::INVERSE;
+        cfg_intt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_intt.zero_padding = false;
+        cfg_intt.mod_inverse = n_inverse_->data();
+        cfg_intt.stream = stream;
 
         gpuntt::GPU_NTT(plain.data(), temp_plain.data(), intt_table_->data(),
                         modulus_->data(), cfg_intt, current_modulus_count,
@@ -811,10 +811,10 @@ namespace heongpu
             plain.scale_, two_pow_64, reverse_order->data(), n_power);
         HEONGPU_CUDA_CHECK(cudaGetLastError());
 
-        gpufft::fft_configuration<Float64> cfg_fft = {
-            .n_power = log_slot_count_,
-            .fft_type = gpufft::type::FORWARD,
-            .stream = stream};
+        gpufft::fft_configuration<Float64> cfg_fft;
+        cfg_fft.n_power = log_slot_count_;
+        cfg_fft.fft_type = gpufft::type::FORWARD;
+        cfg_fft.stream = stream;
 
         gpufft::GPU_Special_FFT(message_gpu.data(),
                                 special_fft_roots_table_->data(), cfg_fft, 1);
@@ -837,13 +837,13 @@ namespace heongpu
 
         DeviceVector<Data64> temp_plain(n * current_modulus_count, stream);
 
-        gpuntt::ntt_rns_configuration<Data64> cfg_intt = {
-            .n_power = n_power,
-            .ntt_type = gpuntt::INVERSE,
-            .reduction_poly = gpuntt::ReductionPolynomial::X_N_plus,
-            .zero_padding = false,
-            .mod_inverse = n_inverse_->data(),
-            .stream = stream};
+        gpuntt::ntt_rns_configuration<Data64> cfg_intt;
+        cfg_intt.n_power = n_power;
+        cfg_intt.ntt_type = gpuntt::INVERSE;
+        cfg_intt.reduction_poly = gpuntt::ReductionPolynomial::X_N_plus;
+        cfg_intt.zero_padding = false;
+        cfg_intt.mod_inverse = n_inverse_->data();
+        cfg_intt.stream = stream;
 
         gpuntt::GPU_NTT(plain.data(), temp_plain.data(), intt_table_->data(),
                         modulus_->data(), cfg_intt, current_modulus_count,
@@ -868,10 +868,10 @@ namespace heongpu
             plain.scale_, two_pow_64, reverse_order->data(), n_power);
         HEONGPU_CUDA_CHECK(cudaGetLastError());
 
-        gpufft::fft_configuration<Float64> cfg_fft = {
-            .n_power = log_slot_count_,
-            .fft_type = gpufft::type::FORWARD,
-            .stream = stream};
+        gpufft::fft_configuration<Float64> cfg_fft;
+        cfg_fft.n_power = log_slot_count_;
+        cfg_fft.fft_type = gpufft::type::FORWARD;
+        cfg_fft.stream = stream;
 
         gpufft::GPU_Special_FFT(message_gpu.data(),
                                 special_fft_roots_table_->data(), cfg_fft, 1);

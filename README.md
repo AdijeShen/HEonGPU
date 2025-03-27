@@ -2,7 +2,7 @@
 
 ### 🚨 **New Feature: Integration [RNGonGPU](https://github.com/Alisah-Ozcan/RNGonGPU)**
 
-[RNGonGPU](https://github.com/Alisah-Ozcan/RNGonGPU) has been successfully integrated into HEonGPU. [RNGonGPU](https://github.com/Alisah-Ozcan/RNGonGPU) features a secure Deterministic Random Bit Generator (DRBG) designed according to NIST [Recommendation for Random Number Generation Using Deterministic Random Bit Generators](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-90Ar1.pdf). This integration enhances GPU-based random number generation, ensuring both high performance and robust security.
+[RNGonGPU](https://github.com/Alisah-Ozcan/RNGonGPU) has been successfully integrated into HEonGPU. [RNGonGPU](https://github.com/Alisah-Ozcan/RNGonGPU) features a secure Deterministic Random Bit Generator (DRBG) designed according to NIST [Recommendation for Random Number Generation Using Deterministic Random Bit Generators](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.860-90Ar1.pdf). This integration enhances GPU-based random number generation, ensuring both high performance and robust security.
 
 ### 🚨 **New Application: Private Information Retrieval on GPU ([PIRonGPU](https://github.com/Alisah-Ozcan/PIRonGPU))**
 
@@ -118,7 +118,7 @@ To build and install HEonGPU, follow the steps below. This includes configuring 
 </div>
 
 ```bash
-$ cmake -S . -D CMAKE_CUDA_ARCHITECTURES=89 -B build
+$ cmake -S . -D CMAKE_CUDA_ARCHITECTURES=86 -B build
 $ cmake --build ./build/
 $ sudo cmake --install build
 ```
@@ -128,7 +128,7 @@ $ sudo cmake --install build
 To run tests:
 
 ```bash
-$ cmake -S . -D HEonGPU_BUILD_TESTS=ON -D CMAKE_CUDA_ARCHITECTURES=89 -B build
+$ cmake -S . -D HEonGPU_BUILD_TESTS=ON -D CMAKE_CUDA_ARCHITECTURES=86 -B build
 $ cmake --build ./build/
 
 $ ./build/bin/test/<...>
@@ -138,7 +138,7 @@ $ Example: ./build/bin/test/bfv_addition_testcases
 To run benchmarks:
 
 ```bash
-$ cmake -S . -D HEonGPU_BUILD_BENCHMARKS=ON -D CMAKE_CUDA_ARCHITECTURES=89 -B build
+$ cmake -S . -D HEonGPU_BUILD_BENCHMARKS=ON -D CMAKE_CUDA_ARCHITECTURES=86 -B build
 $ cmake --build ./build/
 
 $ ./build/bin/benchmark/<...>
@@ -150,7 +150,7 @@ $ Example: ./build/bin/benchmark/bfv_benchmark
 To run examples:
 
 ```bash
-$ cmake -S . -D HEonGPU_BUILD_EXAMPLES=ON -D CMAKE_CUDA_ARCHITECTURES=89 -B build
+$ cmake -S . -D HEonGPU_BUILD_EXAMPLES=ON -D CMAKE_CUDA_ARCHITECTURES=86 -B build
 $ cmake --build ./build/
 
 $ ./build/bin/examples/<...>
@@ -219,7 +219,7 @@ Features in [define.h](src/heongpu/include/kernel/defines.h):
 
 - **Device**:
   - Initial size (`0.5`): 50% of GPU memory.
-  - Max size (`0.8`): 80% of GPU memory.
+  - Max size (`0.8`): 86% of GPU memory.
 - **Host**:
   - Initial size (`0.1`): 10% of CPU memory.
   - Max size (`0.2`): 20% of CPU memory.

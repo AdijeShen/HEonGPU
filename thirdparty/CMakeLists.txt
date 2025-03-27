@@ -7,7 +7,7 @@ execute_process(COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/build.sh WORKING_DIRECT
 
 include(FetchContent)
 
-FetchContent_Declare(
+CustomFetch(
     rmm
     GIT_REPOSITORY https://github.com/rapidsai/rmm
     GIT_TAG        branch-24.08

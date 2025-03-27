@@ -60,6 +60,43 @@ set(RNGonGPU_USE_INTERNAL_GPUNTT
     OFF CACHE BOOL
     "Force using global GPU-NTT (thirdparty/GPU-NTT) instead of RNGonGPU's internal" FORCE)
 
+cmake_policy(SET CMP0077 NEW)
+cmake_policy(SET CMP0079 NEW)
+
+set(FETCHCONTENT_QUIET OFF)  # 显示下载进度
+set(FETCHCONTENT_UPDATES_DISCONNECTED ON)  # 断点续传
+set(FETCHCONTENT_TIMEOUT 6000)  # 全局设置超时时间为600秒
+
+set(FETCHCONTENT_DOWNLOAD_EXTRACT_TIMESTAMP true)
+# cmake_policy(SET CMP0135 NEW)
+
+set(git_clone_shallow_options "--depth 1 --single-branch")
+
+function(CustomFetch name)
+    set(options)
+    set(oneValueArgs GIT_REPOSITORY GIT_TAG GIT_DEPTH SOURCE_DIR)
+    set(multiValueArgs)
+    cmake_parse_arguments(FETCHCONTENT "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+    # 准备声明参数
+    set(declare_args
+        ${name}
+        GIT_REPOSITORY ${FETCHCONTENT_GIT_REPOSITORY}
+        GIT_TAG ${FETCHCONTENT_GIT_TAG}
+        GIT_PROGRESS TRUE
+        GIT_SHALLOW 1
+        GIT_DEPTH 1
+    )
+    
+    # 如果提供了SOURCE_DIR，则添加到声明参数中
+    if(DEFINED FETCHCONTENT_SOURCE_DIR)
+        list(APPEND declare_args SOURCE_DIR ${FETCHCONTENT_SOURCE_DIR})
+    endif()
+    
+    # 使用构建好的参数列表调用FetchContent_Declare
+    FetchContent_Declare(${declare_args})
+endfunction()
+    
 add_subdirectory(thirdparty)
 add_subdirectory(src)
 

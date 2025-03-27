@@ -5,7 +5,7 @@
 
 include(FetchContent)
 
-FetchContent_Declare(
+CustomFetch(
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
   GIT_TAG        release-1.12.0
